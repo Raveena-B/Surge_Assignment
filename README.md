@@ -18,7 +18,7 @@ After the User Type was checked by admin with the User List.Meanwhile the User b
 I have used MERN stack for create almost all of the functionalities of this application. To create frontend I use React JS and for backend I used Node JS with Express. To store data I used MongoDB .
 
 Backend Dependecies    --> cors , dotenv , express , mongoose <br>
-Frontend Dependencies  -->  react ,  react-dom , react-router-dom , axios
+Frontend Dependencies  -->  react ,  react-dom , react-router-dom , axios , nodemon 
 
 ![MERN-Stack-Development-and-Consulting-Services](https://user-images.githubusercontent.com/86104487/180270291-c754bfba-aa0b-4959-82e4-05c5d74b9a8e.jpg)
 
