@@ -17,7 +17,7 @@ const CreateUser = () => {
             sx={{ flexGrow: 1 }}
             fontFamily={"Times New Roman"}
           >
-            👩‍💼 Student Management System
+            👩‍💼 Student Note App
           </Typography>
           <Button
             color="inherit"
