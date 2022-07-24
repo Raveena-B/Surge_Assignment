@@ -6,16 +6,7 @@ const crypto = require("crypto");
 //when we use asynchronous function we need try catch block
 exports.register = async (req, res) => {
   //controller for register
-  const {
-    email,
-    password,
-    id,
-    firstName,
-    mobile,
-    dateOfBirth,
-    userStatus,
-    accountType,
-  } = req.body; //destructur e method
+  const { email, password, userStatus, accountType } = req.body; //destructur e method
 
   const isAvailable = await User.findOne({
     //check the availability of saving data
@@ -35,10 +26,6 @@ exports.register = async (req, res) => {
     const user = await User.create({
       email,
       password,
-      id,
-      firstName,
-      mobile,
-      dateOfBirth,
       userStatus,
       accountType,
       //this.password filed of user.js in models
@@ -60,6 +47,7 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   //controller for login
   const { email, password } = req.body;
+  console.log(req.body);
 
   if (!email && !password) {
     //backend validation
@@ -70,7 +58,7 @@ exports.login = async (req, res) => {
 
   try {
     const user = await User.findOne({
-      username: { $regex: new RegExp(username, "i") },
+      email: { $regex: new RegExp(email, "i") },
     }).select("+password"); //match two passwords
 
     if (!user) {
@@ -311,7 +299,7 @@ const sendToken = (user, statusCode, res) => {
     dateOfBirth,
     mobile,
     userStatus,
-    password,
+
     accountType,
   });
 };

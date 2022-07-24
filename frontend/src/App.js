@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Pages/Login";
-import ResetPassword from "../src/Pages/Student/resetPassword";
+import ResetPassword from "./Pages/Student/ResetPassword";
 import CreateUser from "../src/Pages/Admin/CreateUser";
 import DisplayUsers from "../src/Pages/Admin/DisplayUsers";
 import EditUser from "../src/Pages/Admin/EditUser";
-import Home from "../src/Pages/Student/Home";
+import CreateNotes from "./Pages/Student/CreateNotes";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
           <Route path="/createuser" element={<CreateUser />}></Route>
           <Route path="/displayusers" element={<DisplayUsers />}></Route>
           <Route path="/edituser" element={<EditUser />}></Route>
-          <Route path="/home" element={<Home />}></Route>
+          <Route path="/createnote" element={<CreateNotes />}></Route>
         </Routes>
       </Router>
     </div>

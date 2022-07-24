@@ -45,7 +45,7 @@ const Login = () => {
 
     try {
       const { data } = await axios.post(
-        "/user/login",
+        "http://localhost:8070/user/login",
         { email, password },
         config
       );
@@ -64,10 +64,12 @@ const Login = () => {
       setTimeout(() => {
         // set a 5seconds timeout for authentication
 
-        if (data.type === "Admin") {
-          history(`/createuser/${data.email}`);
+        if (data.accountType === "Student" && data.userStatus) {
+          history(`/resetdetails`);
+        } else if (data.accountType === "Student" && !data.userStatus) {
+          history(`/notedetails`);
         } else {
-          history(`/home/${data.email}`);
+          history(`/admindashboard`);
         }
 
         setLoading(false);
