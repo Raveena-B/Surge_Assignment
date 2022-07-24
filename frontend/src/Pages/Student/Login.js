@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
+import { useNavigate } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -14,15 +15,24 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Login = () => {
+  const navigate = useNavigate();
   return (
     <Box>
       <Grid container spacing={0}>
         <Grid item xs={6}>
+          <Button
+            variant="outlined"
+            color="error"
+            sx={{ mt: 3, mx: 3 }}
+            onClick={() => navigate("/createuser")}
+          >
+            Admin Login
+          </Button>
           <Item>
             <Container
               maxWidth="lg"
               sx={{
-                my: 10,
+                my: 7,
                 mx: 3,
               }}
             >
@@ -31,11 +41,16 @@ const Login = () => {
                 sx={{
                   py: 5,
                   mx: 18,
-                  mt: 10.3,
+                  mt: 8,
                 }}
               >
-                <Typography variant="h4" mb={8} textAlign="center">
-                  <b> Login</b>
+                <Typography
+                  variant="h4"
+                  mb={8}
+                  textAlign="center"
+                  fontFamily={"Times New Roman"}
+                >
+                  Login
                 </Typography>
 
                 <Box>
@@ -98,9 +113,13 @@ const Login = () => {
             </Container>
           </Item>
         </Grid>
-        <Box mt={17} mb={5.8} mx={15}>
-          <img src="1.svg" alt="student login"></img>
-        </Box>
+        <Grid>
+          <Item>
+            <Box mt={17} mb={5} mx={15}>
+              <img src="1.svg" alt="student login"></img>
+            </Box>
+          </Item>
+        </Grid>
       </Grid>
     </Box>
   );
