@@ -4,7 +4,9 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import axios from "axios";
-import { useNavigate, useState, useEffect } from "react";
+import Snackbar from "@mui/material/Snackbar";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const CreateUser = () => {
   const navigate = useNavigate();
@@ -54,7 +56,7 @@ const CreateUser = () => {
       setTimeout(() => {
         //set a time out
         setLoading(false);
-        notification.info({
+        Snackbar.info({
           message: `Notification`,
           description: "Successfully Submitted the user details 😘",
           placement,
@@ -62,7 +64,7 @@ const CreateUser = () => {
         form.resetFields();
       }, 5000); //5seconds timeout
     } catch (error) {
-      notification.error({
+      Snackbar.error({
         message: `Notification`,
         description: error.response.data.error,
         placement,
@@ -71,6 +73,12 @@ const CreateUser = () => {
       form.resetFields();
       setLoading(false);
     }
+  };
+
+  const [form] = form.useForm();
+
+  const onReset = () => {
+    form.resetFields();
   };
 
   return (
@@ -120,33 +128,40 @@ const CreateUser = () => {
             mt: 10,
           }}
         >
-          <TextField
-            id="email"
-            label="Enter the email"
-            variant="outlined"
-            sx={{ m: 2, width: "60ch", mx: 25 }}
-            maxRows={4}
-          ></TextField>
-          <TextField
-            id="password"
-            label="Enter the password"
-            variant="outlined"
-            sx={{ m: 2, width: "60ch", mx: 25 }}
-            maxRows={4}
-          ></TextField>
+          <form>
+            <TextField
+              id="email"
+              label="Enter the email"
+              variant="outlined"
+              value={email}
+              sx={{ m: 2, width: "60ch", mx: 25 }}
+              maxRows={4}
+              onChange={(e) => setEmail(e.target.value)}
+            ></TextField>
+            <TextField
+              id="password"
+              label="Enter the password"
+              variant="outlined"
+              value={password}
+              sx={{ m: 2, width: "60ch", mx: 25 }}
+              maxRows={4}
+              onChange={(e) => setPassword(e.target.value)}
+            ></TextField>
 
-          <Button
-            variant="contained"
-            sx={{
-              mt: 5,
-              mx: 45,
-              width: "22ch",
-              height: "6ch",
-              backgroundColor: "purple",
-            }}
-          >
-            Submit
-          </Button>
+            <Button
+              variant="contained"
+              sx={{
+                mt: 5,
+                mx: 45,
+                width: "22ch",
+                height: "6ch",
+                backgroundColor: "purple",
+              }}
+              onClick={userHandler}
+            >
+              Submit
+            </Button>
+          </form>
         </Paper>
       </Container>
     </Box>
