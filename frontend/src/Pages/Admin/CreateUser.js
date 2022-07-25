@@ -3,10 +3,76 @@ import { Box, Container, Typography, Paper, TextField } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useNavigate, useState, useEffect } from "react";
 
 const CreateUser = () => {
   const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loader, setLoader] = useState(false);
+
+  const type = "user";
+
+  const [loading, setLoading] = useState(false); //additional
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoader(!loader);
+    }, 5000);
+  }, []);
+
+  const userHandler = async (placement) => {
+    setLoading(true);
+
+    const config = {
+      //headers
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      await axios.post(
+        //use axios API
+        "http://localhost:8070/user/register",
+        {
+          email,
+          password,
+        },
+        config
+      );
+
+      await axios.post(
+        "http://localhost:8070/user/notifyuser",
+        { email, password },
+        config
+      );
+
+      setTimeout(() => {
+        //set a time out
+        setLoading(false);
+        notification.info({
+          message: `Notification`,
+          description: "Successfully Submitted the user details 😘",
+          placement,
+        });
+        form.resetFields();
+      }, 5000); //5seconds timeout
+    } catch (error) {
+      notification.error({
+        message: `Notification`,
+        description: error.response.data.error,
+        placement,
+      });
+      setError(true);
+      form.resetFields();
+      setLoading(false);
+    }
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -50,8 +116,8 @@ const CreateUser = () => {
           elevation={11}
           sx={{
             py: 5,
-            mx: 10,
-            mt: 5,
+            mx: 18,
+            mt: 10,
           }}
         >
           <TextField
@@ -73,13 +139,13 @@ const CreateUser = () => {
             variant="contained"
             sx={{
               mt: 5,
-              mx: 50,
+              mx: 45,
               width: "22ch",
               height: "6ch",
               backgroundColor: "purple",
             }}
           >
-            Save
+            Submit
           </Button>
         </Paper>
       </Container>

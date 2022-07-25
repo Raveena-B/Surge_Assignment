@@ -6,10 +6,9 @@ import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
 import Link from "@mui/material/Link";
 import AppBar from "@mui/material/AppBar";
-import RotateLeftOutlinedIcon from "@mui/icons-material/RotateLeftOutlined";
-import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 import axios from "axios";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -65,11 +64,11 @@ const Login = () => {
         // set a 5seconds timeout for authentication
 
         if (data.accountType === "Student" && data.userStatus) {
-          history(`/resetdetails`);
+          history(`/resetpassword`);
         } else if (data.accountType === "Student" && !data.userStatus) {
-          history(`/notedetails`);
+          history(`/createnote`);
         } else {
-          history(`/admindashboard`);
+          history(`/createuser`);
         }
 
         setLoading(false);
@@ -90,7 +89,16 @@ const Login = () => {
   return (
     <Box>
       <AppBar position="static">
-        <Toolbar></Toolbar>
+        <Toolbar>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1 }}
+            fontFamily={"Times New Roman"}
+          >
+            👩‍💼 Student Note App
+          </Typography>
+        </Toolbar>
       </AppBar>
       <Grid container spacing={0}>
         <Grid item xs={6}>
@@ -145,7 +153,7 @@ const Login = () => {
                       )}
                       <Button
                         variant="contained"
-                        sx={{ m: 1, width: "40ch", backgroundColor: "purple" }}
+                        sx={{ m: 2, width: "40ch", backgroundColor: "purple" }}
                         onClick={() => loginHandler()}
                       >
                         {loading ? "Authenticating..." : "SIGN IN"}
@@ -154,8 +162,8 @@ const Login = () => {
                   </Box>
                   <Box
                     sx={{
-                      my: 4,
-                      px: 5,
+                      my: 1,
+                      px: 10,
                       display: "flex",
                       flexDirection: "column",
                     }}

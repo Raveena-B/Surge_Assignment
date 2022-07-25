@@ -18,20 +18,20 @@ router.post("/register", register); // call the auth in controllers
 
 router.post("/login", login);
 
-// router.route("/forgotpassword").post(forgotpassword);
+router.post("/forgotpassword", forgotpassword);
 
-// router.route("/notifyuser").post(notifyUser);
+router.post("/notifyuser", notifyUser);
 
-// router.route("/resetpassword/:resetToken").put(resetpassword);
+router.put("/resetpassword/:resetToken", resetpassword);
 
-// router.route("/registeruser").post(registerUser);
+router.post("/registeruser", registerUser);
 
-// router.route("/").get(get);
+router.get("/", get);
 
-// router.route("/get/:id").get(getById);
+router.get("/get/:id", getById);
 
-// router.route("/update/:id").put(updateById);
+router.put("/update/:id", updateById);
 
-// router.route("/delete/:id").delete(deleteById);
+router.delete("/delete/:id", deleteById);
 
 module.exports = router;
