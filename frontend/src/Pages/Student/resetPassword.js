@@ -112,6 +112,8 @@ const ResetPassword = () => {
                     label="Enter the First Name"
                     variant="outlined"
                     size="small"
+                    color="secondary"
+                    required
                     value={firstName}
                     sx={{ m: 1, width: "40ch", mx: 2, mb: 1 }}
                     onChange={(e) => setFirstName(e.target.value)}
@@ -122,6 +124,8 @@ const ResetPassword = () => {
                     variant="outlined"
                     size="small"
                     value={lastName}
+                    color="secondary"
+                    required
                     sx={{ m: 1, width: "40ch", mx: 2 }}
                     onChange={(e) => setLastName(e.target.value)}
                   ></TextField>
@@ -131,6 +135,8 @@ const ResetPassword = () => {
                     variant="outlined"
                     size="small"
                     value={email}
+                    color="secondary"
+                    required
                     sx={{ m: 1, width: "40ch", mx: 2 }}
                     onChange={(e) => setEmail(e.target.value)}
                   ></TextField>
@@ -139,6 +145,7 @@ const ResetPassword = () => {
                     label="Enter the Date-Of-Birth"
                     variant="outlined"
                     size="small"
+                    color="secondary"
                     value={dateOfBirth}
                     sx={{ m: 1, width: "40ch", mx: 2 }}
                     onChange={(e) => setDateOfBirth(e.target.value)}
@@ -149,6 +156,8 @@ const ResetPassword = () => {
                     variant="outlined"
                     size="small"
                     value={mobile}
+                    color="secondary"
+                    required
                     sx={{ m: 1, width: "40ch", mx: 2 }}
                     onChange={(e) => setMobile(e.target.value)}
                   ></TextField>
@@ -159,6 +168,8 @@ const ResetPassword = () => {
                     label="Enter New Password"
                     size="small"
                     value={password}
+                    color="secondary"
+                    required
                     sx={{ m: 1, width: "40ch", mx: 2 }}
                     onChange={(e) => setPassword(e.target.value)}
                   />

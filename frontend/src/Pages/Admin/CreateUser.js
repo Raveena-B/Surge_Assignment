@@ -134,6 +134,8 @@ const CreateUser = () => {
               label="Enter the email"
               variant="outlined"
               value={email}
+              color="secondary"
+              required
               sx={{ m: 2, width: "60ch", mx: 25 }}
               maxRows={4}
               onChange={(e) => setEmail(e.target.value)}
@@ -143,6 +145,8 @@ const CreateUser = () => {
               label="Enter the password"
               variant="outlined"
               value={password}
+              color="secondary"
+              required
               sx={{ m: 2, width: "60ch", mx: 25 }}
               maxRows={4}
               onChange={(e) => setPassword(e.target.value)}

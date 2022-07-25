@@ -38,13 +38,15 @@ const DisplayUsers = () => {
       </AppBar>
       <Container maxWidth="lg">
         <Typography
-          variant="h4"
           mb={5}
           mt={5}
           textAlign="center"
+          variant="h4"
+          color={"textSecondary"}
           fontFamily={"Times New Roman"}
+          gutterBottom
         >
-          <b>Display User</b>
+          Display User
         </Typography>
       </Container>
     </Box>
