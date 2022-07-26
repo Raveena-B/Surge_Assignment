@@ -1,39 +1,41 @@
-# Student Management Application 🧑
+# Student Note Application🧑
 
 
 
 ## Brief Explanation about the Application ✍🏻
 
-This is a web application that Student can arranged their notes and able to do all the functionalities . The System Admin create the user and validate the email , and send email to the User with temporary password and login link.
+This is a web application that Student can arranged their notes and able to do all the functionalities . The System Admin create the user by providing an email and temporary password, and send email to the user with login link.
 
-Then the User can login to the system that admin provided .If the Login fail then the error message is displaying else check the status of the profile and direct to the Sign Up page for the reset password.Then check the validation of the inputed user informations and display the alert when it is not valid informations.otherwise popup the success message ane redirect to the Login Page.
+The User can then log in to the system using the admin-provided credentials. The system verifies the user status (whether the user is logging in for the first time or not) and the user type  (Whether is Student or an admin ). The user is then taken directly to the screen where they can enter some information and reset their password.After reset he/she need to login again and direct to the home screen otherwise display an error message. 
 
-After the User Type was checked by admin with the User List.Meanwhile the User become the Student because  he/she register to the system and Student can do what he/she want.Mainly Student can Create her/his own Notes List and view them,Update the notes as he/she wish and finally delete the notes .All the data is stored and updating in the database.
-
-![5fd80ce36e1a9c64f373d428_what-is-a-student-management-system-Thumb](https://user-images.githubusercontent.com/86104487/180269814-e37211d0-73a5-4c6a-9d6d-d36bcdf50560.png)
+The student can create his or her own Notes List, view it, modify it as needed, and then remove it. The database contains and continuously updates all the data. Admin has the ability to view and create users.
 
 
-## Technologies 💻
+## Tools & Technologies 💻
 
-I have used MERN stack for create almost all of the functionalities of this application. To create frontend I use React JS and for backend I used Node JS with Express. To store data I used MongoDB .
+I have used MERN stack for create almost all of the functionalities of this application. To create frontend I use React JS and for backend I used Node JS with Express. To store data I used MongoDB . The VS Code and Postman  are used as tool for development of the application
 
 Backend Dependecies    --> cors , dotenv , express , mongoose <br>
 Frontend Dependencies  -->  react ,  react-dom , react-router-dom , axios , nodemon 
 
-![MERN-Stack-Development-and-Consulting-Services](https://user-images.githubusercontent.com/86104487/180270291-c754bfba-aa0b-4959-82e4-05c5d74b9a8e.jpg)
+
+
+![school-software](https://user-images.githubusercontent.com/86104487/180974820-4a7c444d-ce73-4bb2-9ba8-6a89ea8517d1.png)
+
 
 
 ## Features ⚡️
 
-📌Admin can Create User <br>
-📌admin can validate the User <br>
-📌student can login to the system<br>
-📌student will be able to Add Notes,View Note List,Delete and Update Notes<br>
-📌Success and Error messages are popup
+📌Admin can Create User and View All User Details<br>
+📌Admin can validate the User <br>
+📌User can login to the system<br>
+📌User can reset the password <br>
+📌Student will be able to Add Notes,View Note List,Delete and Update Notes<br>
+📌Loading ,Success and Error messages are Displaing seperately
 
 ## File structure 🧾
 
-When I create this application I created seperate folders for implement the frontend and the backend. In the backend folder I created seperate folders for routes, database models and the middleware. And also in the Docs file it contains the Answers for Written Questionnaire . Then I create .env file to store the database connection link. But I did not include it to this repository because of the security. When you implement this application make sure to create that file and include the database connection link.
+When I create this application I created seperate folders for implement the frontend and the backend. In the backend folder I created seperate folders for routes, database models and the middleware. And also in the Docs file it contains the Answers for Written Questionnaire . Then I create .env file to store the database connection link. But I did not include it to this repository because of the security. When you implement this application make sure to create that file and include the database connection link. I implemented seed file to add admin to the database directly
 
 In the forntend I created seperate folder to contain the React components.
 
