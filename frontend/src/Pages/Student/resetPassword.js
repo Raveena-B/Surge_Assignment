@@ -44,10 +44,15 @@ const ResetPassword = () => {
   const resetPasswordHandler = async () => {
     setLoading(true);
     try {
-      await axios.put(
-        `http://localhost:8070/user/resetpassword/${resetToken}`,
-        { password }
-      );
+      await axios.put(`http://localhost:8070/user/resetpassword/`, {
+        firstName,
+        password,
+        lastName,
+        mobile,
+        dateOfBirth,
+        userStatus: false,
+        email: localStorage.getItem("email"),
+      });
 
       setTimeout(() => {
         Snackbar.info({

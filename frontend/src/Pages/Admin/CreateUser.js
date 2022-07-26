@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Container, Typography, Paper, TextField } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import axios from "axios";
+import MuiAlert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import ReplyIcon from "@mui/icons-material/Reply";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const CreateUser = () => {
   const navigate = useNavigate();
@@ -14,6 +19,8 @@ const CreateUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loader, setLoader] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [errorOpen, setErrorOpen] = useState(false);
 
   const type = "user";
 
@@ -43,6 +50,8 @@ const CreateUser = () => {
         {
           email,
           password,
+          accountType: "Student",
+          userStatus: true,
         },
         config
       );
@@ -52,33 +61,33 @@ const CreateUser = () => {
         { email, password },
         config
       );
+      setOpen(true);
 
       setTimeout(() => {
         //set a time out
+        setEmail("");
+        setPassword("");
         setLoading(false);
-        Snackbar.info({
-          message: `Notification`,
-          description: "Successfully Submitted the user details 😘",
-          placement,
-        });
-        form.resetFields();
+        setOpen(false);
       }, 5000); //5seconds timeout
     } catch (error) {
-      Snackbar.error({
-        message: `Notification`,
-        description: error.response.data.error,
-        placement,
-      });
+      // Snackbar.error({
+      //   message: `Notification`,
+      //   description: error.response.data.error,
+      //   placement,
+      // });
+      console.log("triggered");
       setError(true);
-      form.resetFields();
+      setErrorOpen(true);
+
+      setTimeout(() => {
+        setEmail("");
+        setPassword("");
+        setErrorOpen(false);
+      }, 5000);
+
       setLoading(false);
     }
-  };
-
-  const [form] = form.useForm();
-
-  const onReset = () => {
-    form.resetFields();
   };
 
   return (
@@ -110,16 +119,41 @@ const CreateUser = () => {
           </Button>
         </Toolbar>
       </AppBar>
+      <Snackbar open={open} autoHideDuration={6000}>
+        <Alert severity="success" sx={{ width: "100%" }}>
+          Successfully Registered
+        </Alert>
+      </Snackbar>
+      <Snackbar open={errorOpen} autoHideDuration={6000}>
+        <Alert severity="error" sx={{ width: "100%" }}>
+          Already Registered !!
+        </Alert>
+      </Snackbar>
       <Container maxWidth="lg">
+        <Button
+          variant="outlined"
+          color="error"
+          sx={{
+            width: "25ch",
+            mt: 3,
+            mx: -20,
+          }}
+          onClick={() => navigate("/")}
+        >
+          <ReplyIcon /> Back To Login
+        </Button>
         <Typography
-          variant="h4"
           mb={5}
           mt={5}
           textAlign="center"
+          variant="h4"
+          color={"textSecondary"}
           fontFamily={"Times New Roman"}
+          gutterBottom
         >
-          <b>Create User</b>
+          Create User
         </Typography>
+
         <Paper
           elevation={11}
           sx={{

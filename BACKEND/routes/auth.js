@@ -22,7 +22,7 @@ router.post("/forgotpassword", forgotpassword);
 
 router.post("/notifyuser", notifyUser);
 
-router.put("/resetpassword/:resetToken", resetpassword);
+router.put("/resetpassword", resetpassword);
 
 router.post("/registeruser", registerUser);
 

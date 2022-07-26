@@ -39,7 +39,7 @@ const DisplayUsers = () => {
       <Container maxWidth="lg">
         <Typography
           mb={5}
-          mt={5}
+          mt={10}
           textAlign="center"
           variant="h4"
           color={"textSecondary"}

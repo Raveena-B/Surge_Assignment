@@ -10,9 +10,8 @@ exports.register = async (req, res) => {
 
   const isAvailable = await User.findOne({
     //check the availability of saving data
-    id: { $regex: new RegExp(id, "i") },
+
     email: { $regex: new RegExp(email, "i") },
-    firstName: firstName,
   });
 
   if (isAvailable) {
@@ -141,30 +140,33 @@ exports.forgotpassword = async (req, res) => {
 
 exports.resetpassword = async (req, res) => {
   //controller for reset password
-  const resetPasswordToken = crypto
-    .createHash("sha256")
-    .update(req.params.resetToken)
-    .digest("hex"); //create a hash code using crypto
+  const {
+    firstName,
+    lastName,
+    mobile,
+    dateOfBirth,
+    password,
+    userStatus,
+    email,
+  } = req.body;
+
+  const user = await User.findOne({ email });
+  user.firstName = firstName; //save prototype
+  user.lastName = lastName;
+  user.mobile = mobile;
+  user.dateOfBirth = dateOfBirth;
+  user.password = password;
+  user.userStatus = userStatus;
 
   try {
-    const user = await User.findOne({
-      resetPasswordToken,
-      resetPasswordExpire: { $gt: Date.now() }, //find and update the relavant database field
-    });
-
-    if (!user) {
-      return res
-        .status(400)
-        .json({ success: false, error: "Invalid Reset Token" });
-    }
-
-    user.password = req.body.password;
-    user.resetPasswordToken = undefined;
-    user.resetPasswordExpire = undefined;
-
-    await user.save();
-
-    res.status(200).json({ success: true, verify: "Password reset success" });
+    await user
+      .save()
+      .then(() =>
+        res
+          .status(200)
+          .json({ success: true, verify: "Password reset success" })
+      )
+      .catch((err) => res.status(500).json({ success: false, err }));
   } catch (error) {
     if (error.name === "ValidationError") {
       const message = Object.values(error.errors).map((val) => val.message);
@@ -176,20 +178,16 @@ exports.resetpassword = async (req, res) => {
 //when we use asynchronous function we need try catch block
 exports.registerUser = async (req, res) => {
   //controller for register
-  const { firstName, lastName, email, password, accountType } = req.body; //destructur e method
+  const { email, password, accountType, userStatus } = req.body; //destructur e method
 
   try {
     const user = await User.create({
-      id: Number(req.body.id),
-      firstName,
-      lastName,
       email,
-      dateOfBirth: Date(req.body.dateOfBirth),
-      mobile: Number(req.body.mobile),
-      userStatus: Boolean(req.body.userStatus),
+      userStatus,
       password,
       accountType, //this.password filed of user.js in models
     });
+    console.log(user);
     sendToken(user, 200, res);
   } catch (error) {
     if (error.code === 11000) {
@@ -282,7 +280,7 @@ const sendToken = (user, statusCode, res) => {
   const token = user.getSignedToken();
   const email = user.email;
   const type = user.type;
-  const id = user.id;
+  const id = user._id;
   const firstName = user.firstName;
   const lastName = user.lastName;
   const dateOfBirth = user.dateOfBirth;

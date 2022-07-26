@@ -15,15 +15,14 @@ const CreateNotes = () => {
   const [descriptionError, setDescriptionError] = useState(false);
 
   const submitHandler = (e) => {
-    e.preventDefault();
     setTitleError(false);
     setDescriptionError(false);
 
-    if (title == "") {
+    if (title === "") {
       setTitleError(true);
     }
 
-    if (description == "") {
+    if (description === "") {
       setDescriptionError(true);
     }
   };

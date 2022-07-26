@@ -32,3 +32,7 @@ app.listen(PORT, () => {
 
 //use routes
 app.use("/user", require("./routes/auth"));
+
+//note routes
+
+app.use("/note", require("./routes/noteRoute"));
