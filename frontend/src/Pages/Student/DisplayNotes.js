@@ -5,28 +5,25 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import NoteCard from "../../Components/NoteCard";
+// import EditNote from "./EditNote";
 import { useNavigate } from "react-router-dom";
 
 const DisplayNotes = () => {
   const navigate = useNavigate();
 
   const [notes, setNotes] = useState([]);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:8070/note/")
-  //     .then((res) => setNotes(res.data))
-  //     .catch((err) => alert(err.message));
-  // }, []);
+  const [deleteNote, setDeleteNote] = useState("");
 
   useEffect(() => {
-    const response = axios //get all notes
-      .get(`http://localhost:8070/note/`)
-      .then((data) => {
-        setNotes(response.data);
-      })
-      .catch((err) => alert(err.message));
-  }, []);
+    (async () =>
+      await axios //get all notes
+        .get(`http://localhost:8070/note/`)
+        .then((res) => {
+          setNotes(res.data.notes);
+        })
+        .catch((err) => alert(err.message)))();
+  }, [deleteNote]);
+  console.log(notes);
 
   const handleDelete = async (id) => {
     //delete notes
@@ -36,7 +33,7 @@ const DisplayNotes = () => {
         alert("Note successfully deleted!");
       })
       .catch((error) => {
-        console.log(error);
+        alert(error);
       });
   };
 
@@ -86,7 +83,12 @@ const DisplayNotes = () => {
             {notes &&
               notes.map((note) => (
                 <Grid Item key={note.id} xs={12} md={6} lg={4}>
-                  <NoteCard note={note} handleDelete={handleDelete} />
+                  <NoteCard
+                    note={note}
+                    handleDelete={handleDelete}
+                    setDeleteNote={setDeleteNote}
+                    // updateHandler={updateHandler}
+                  />
                 </Grid>
               ))}
           </Grid>

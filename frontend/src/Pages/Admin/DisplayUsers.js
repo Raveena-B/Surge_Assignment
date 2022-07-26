@@ -5,22 +5,22 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import NoteCard from "../../Components/NoteCard";
-import Popover from "@mui/material/Popover";
-import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 import { useNavigate } from "react-router-dom";
 
 const DisplayUsers = () => {
   const navigate = useNavigate();
 
   const [users, setUsers] = useState([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const response = axios //get all users
-      .get(`http://localhost:8070/user/`)
-      .then((data) => {
-        setUsers(response.data);
-      })
-      .catch((err) => alert(err.message));
+    (async () =>
+      axios //get all users
+        .get(`http://localhost:8070/user/`)
+        .then((res) => {
+          setUsers(res.data.users);
+        })
+        .catch((err) => alert(err.message)))();
   }, []);
 
   return (
@@ -69,35 +69,13 @@ const DisplayUsers = () => {
             {users &&
               users.map((user) => (
                 <Grid Item key={user.id} xs={12} md={6} lg={4}>
-                  <NoteCard note={user} />
-                  <Button>View More</Button>
-                  <PopupState variant="popover" popupId="demo-popup-popover">
-                    {(popupState) => (
-                      <div>
-                        <Button
-                          variant="contained"
-                          {...bindTrigger(popupState)}
-                        >
-                          View More
-                        </Button>
-                        <Popover
-                          {...bindPopover(popupState)}
-                          anchorOrigin={{
-                            vertical: "bottom",
-                            horizontal: "center",
-                          }}
-                          transformOrigin={{
-                            vertical: "top",
-                            horizontal: "center",
-                          }}
-                        >
-                          <Typography sx={{ p: 2 }}>
-                            The content of the Popover.
-                          </Typography>
-                        </Popover>
-                      </div>
-                    )}
-                  </PopupState>
+                  <NoteCard
+                    note={user}
+                    modalOpen={open}
+                    setOpen={setOpen}
+                    setUsers={setUsers}
+                  />
+                  <Button onClick={() => setOpen(true)}>View More</Button>
                 </Grid>
               ))}
           </Grid>

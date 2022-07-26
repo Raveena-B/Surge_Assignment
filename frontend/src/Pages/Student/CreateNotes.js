@@ -108,10 +108,7 @@ const CreateNotes = () => {
           onChange={(e) => setDescription(e.target.value)}
           error={descriptionError}
         ></TextField>
-        {/* convert js to json formate to render the inputs
-        <code>
-          <pre>{JSON.stringify(notes, null, 2)}</pre>
-        </code> */}
+
         <Button
           variant="contained"
           sx={{

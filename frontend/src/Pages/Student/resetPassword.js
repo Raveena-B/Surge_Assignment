@@ -206,7 +206,7 @@ const ResetPassword = () => {
                         mx: 20,
                         mt: 2,
                       }}
-                      onClick={() => history("/login")}
+                      onClick={() => history("/")}
                     >
                       <ReplyIcon /> Back To Login
                     </Button>
