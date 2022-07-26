@@ -71,12 +71,6 @@ const CreateUser = () => {
         setOpen(false);
       }, 5000); //5seconds timeout
     } catch (error) {
-      // Snackbar.error({
-      //   message: `Notification`,
-      //   description: error.response.data.error,
-      //   placement,
-      // });
-      console.log("triggered");
       setError(true);
       setErrorOpen(true);
 

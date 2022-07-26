@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Container, Typography, Paper, TextField } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
+import axios from "axios";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
@@ -19,12 +20,29 @@ const CreateNotes = () => {
     setDescriptionError(false);
 
     if (title === "") {
+      //frontend validations
       setTitleError(true);
     }
 
     if (description === "") {
       setDescriptionError(true);
     }
+
+    const newNote = {
+      title,
+      description,
+    };
+
+    axios
+      .post("http://localhost:8070/note/add", newNote)
+      .then(() => {
+        alert("Note Added Successfully");
+        setTitle("");
+        setDescription("");
+      })
+      .catch((err) => {
+        alert(err);
+      });
   };
   return (
     <Box>
