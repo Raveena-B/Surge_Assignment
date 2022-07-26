@@ -8,7 +8,7 @@ import axios from "axios";
 import ReplyIcon from "@mui/icons-material/Reply";
 // import { FormLabel } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import Snackbar from "@mui/material/Snackbar";
 import TextField from "@mui/material/TextField";
 
@@ -31,7 +31,7 @@ const ResetPassword = () => {
   const [loading, setLoading] = useState(false);
   const [loader, setLoader] = useState(false);
 
-  const { resetToken } = useParams();
+  // const { resetToken } = useParams();
 
   useEffect(() => {
     setTimeout(() => {
@@ -82,7 +82,7 @@ const ResetPassword = () => {
           <Button
             color="inherit"
             fontFamily={"Times New Roman"}
-            onClick={() => history("/login")}
+            onClick={() => history("/")}
           >
             Login
           </Button>

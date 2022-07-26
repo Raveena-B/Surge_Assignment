@@ -12,6 +12,7 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
+    "material-ui-popup-state": "^4.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
@@ -50,5 +51,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "proxy" : "http://localhost:8070"
+  "proxy": "http://localhost:8070"
 }

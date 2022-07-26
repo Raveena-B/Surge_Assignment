@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Box, Container, Typography, Paper, TextField } from "@mui/material";
+import { Box, Container, Typography, Grid } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import axios from "axios";
+import NoteCard from "../../Components/NoteCard";
 import { useNavigate } from "react-router-dom";
 
 const DisplayNotes = () => {
@@ -13,15 +12,33 @@ const DisplayNotes = () => {
 
   const [notes, setNotes] = useState([]);
 
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:8070/note/")
+  //     .then((res) => setNotes(res.data))
+  //     .catch((err) => alert(err.message));
+  // }, []);
+
   useEffect(() => {
-    function getNotes() {
-      axios
-        .get("http://localhost:8070/note/")
-        .then((res) => console.log(res))
-        .catch((err) => alert(err));
-    }
-    getNotes();
+    const response = axios //get all notes
+      .get(`http://localhost:8070/note/`)
+      .then((data) => {
+        setNotes(response.data);
+      })
+      .catch((err) => alert(err.message));
   }, []);
+
+  const handleDelete = async (id) => {
+    //delete notes
+    await axios
+      .delete(`http://localhost:8070/note/${id}`, id)
+      .then((res) => {
+        alert("Note successfully deleted!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <Box>
@@ -64,11 +81,16 @@ const DisplayNotes = () => {
         >
           Display Notes
         </Typography>
-        <div>
-          {notes.map((note) => (
-            <p key={notes.id}>{notes.title}</p>
-          ))}
-        </div>
+        <Container>
+          <Grid container spacing={3}>
+            {notes &&
+              notes.map((note) => (
+                <Grid Item key={note.id} xs={12} md={6} lg={4}>
+                  <NoteCard note={note} handleDelete={handleDelete} />
+                </Grid>
+              ))}
+          </Grid>
+        </Container>
       </Container>
     </Box>
   );

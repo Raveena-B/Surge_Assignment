@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Container, Typography, Paper, TextField } from "@mui/material";
+import { Box, Container, Typography, TextField } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import axios from "axios";
@@ -9,6 +9,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 const CreateNotes = () => {
   const navigate = useNavigate();
+  // const [notes, setNotes] = useState([]);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -85,7 +86,6 @@ const CreateNotes = () => {
         >
           Create New Note
         </Typography>
-
         <TextField
           id="title"
           label="Note Title"
@@ -96,7 +96,6 @@ const CreateNotes = () => {
           onChange={(e) => setTitle(e.target.value)}
           error={titleError}
         ></TextField>
-
         <TextField
           id="description"
           label="Description"
@@ -109,7 +108,10 @@ const CreateNotes = () => {
           onChange={(e) => setDescription(e.target.value)}
           error={descriptionError}
         ></TextField>
-
+        {/* convert js to json formate to render the inputs
+        <code>
+          <pre>{JSON.stringify(notes, null, 2)}</pre>
+        </code> */}
         <Button
           variant="contained"
           sx={{
