@@ -11,7 +11,10 @@ The User can then log in to the system using the admin-provided credentials. The
 The student can create his or her own Notes List, view it, modify it as needed, and then remove it. The database contains and continuously updates all the data. Admin has the ability to view and create users.
 
 
+![Hero-image](https://user-images.githubusercontent.com/86104487/180998498-10f4f1b3-26cd-481b-a0ca-9138ca408d97.svg)
+
 ## Tools & Technologies 💻
+
 
 I have used MERN stack for create almost all of the functionalities of this application. To create frontend I use React JS and for backend I used Node JS with Express. To store data I used MongoDB . The VS Code and Postman  are used as tool for development of the application
 
@@ -19,8 +22,7 @@ Backend Dependecies    --> cors , dotenv , express , mongoose <br>
 Frontend Dependencies  -->  react ,  react-dom , react-router-dom , axios , nodemon 
 
 
-
-![school-software](https://user-images.githubusercontent.com/86104487/180974820-4a7c444d-ce73-4bb2-9ba8-6a89ea8517d1.png)
+![mern-stack-1024x284](https://user-images.githubusercontent.com/86104487/180997967-296ccb44-75fe-4a67-ad21-1c25f8b6e4ff.png)
 
 
 
@@ -31,7 +33,7 @@ Frontend Dependencies  -->  react ,  react-dom , react-router-dom , axios , node
 📌User can login to the system<br>
 📌User can reset the password <br>
 📌Student will be able to Add Notes,View Note List,Delete and Update Notes<br>
-📌Loading ,Success and Error messages are Displaing seperately
+📌Loading ,Success and Error messages are Displaing seperatelly
 
 ## File structure 🧾
 
