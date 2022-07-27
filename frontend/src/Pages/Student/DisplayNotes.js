@@ -13,6 +13,7 @@ const DisplayNotes = () => {
 
   const [notes, setNotes] = useState([]);
   const [deleteNote, setDeleteNote] = useState("");
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     (async () =>
@@ -38,18 +39,10 @@ const DisplayNotes = () => {
   };
 
   const handleInputChange = (e) => {
-    const query = e.target.value;
-
-    setNotes((prevState) => {
-      const filteredData = prevState.data.filter((element) => {
-        return element.firstName.toLowerCase().includes(query.toLowerCase());
-      });
-
-      return {
-        query,
-        filteredData,
-      };
+    const filteredData = notes.filter((element) => {
+      return element?.title.toLowerCase().includes(query.toLowerCase());
     });
+    setNotes(filteredData);
   };
 
   return (
@@ -93,16 +86,20 @@ const DisplayNotes = () => {
         >
           Display Notes
         </Typography>
-        <TextField
-          id="title"
-          label="Note Title"
-          placeholder="Search.."
-          color="secondary"
-          value={notes}
-          required
-          sx={{ m: 2, width: "100ch", mx: 20 }}
-        ></TextField>
-        <Button onClick={handleInputChange}>Search</Button>
+        <Box>
+          <TextField
+            size="small"
+            sx={{ mb: 1, width: "30ch", mx: 100 }}
+            onChange={(e) => setQuery(e.target.value)}
+          ></TextField>
+          <Button
+            sx={{ mb: 1, width: "10ch", height: "4.7ch", mx: 135, mt: -8.5 }}
+            onClick={handleInputChange}
+            variant="outlined"
+          >
+            Search
+          </Button>
+        </Box>
         <Container>
           <Grid container spacing={3}>
             {notes &&
@@ -112,7 +109,6 @@ const DisplayNotes = () => {
                     note={note}
                     handleDelete={handleDelete}
                     setDeleteNote={setDeleteNote}
-                    // updateHandler={updateHandler}
                   />
                 </Grid>
               ))}

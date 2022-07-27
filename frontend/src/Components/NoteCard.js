@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "@mui/material/Card";
+import Button from "@mui/material/Button";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import { IconButton, Typography } from "@mui/material";
@@ -18,9 +19,10 @@ const NoteCard = ({
   updateHandler,
   setDeleteNote,
   modalOpen = false,
-  setOpen,
   user,
+  id,
 }) => {
+  const [open, setOpen] = useState(false);
   return (
     <div>
       <Card elevation={3} sx={{ m: 1 }}>
@@ -37,18 +39,24 @@ const NoteCard = ({
               {/* <EditIcon onClick={() => (updateHandler = note.id)} /> */}
             </IconButton>
           }
-          title={note.title}
-          firstName={user.firstName}
+          title={note?.title ? note?.title : user?.firstName}
         />
         <CardContent>
           <Typography variant="body2" color="textSecondary">
-            {note.description}
-            {user.lastName}
+            {note?.description}
+            {user?.lastName}
           </Typography>
+          <Button
+            onClick={() => {
+              setOpen(true);
+            }}
+          >
+            View More
+          </Button>
         </CardContent>
       </Card>
       <Dialog
-        open={modalOpen}
+        open={open}
         onClose={() => setOpen(false)}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
@@ -58,11 +66,11 @@ const NoteCard = ({
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            <p> {user.firstName}First Name :</p>
-            <p>{user.lastName}Last Name:</p>
-            <p>{user.email} Email :</p>
-            <p>{user.mobile} Mobile :</p>
-            <p>{user.dateOfBirth} Date Of Birth :</p>
+            <p> {user?.firstName}</p>
+            <p>{user?.lastName}</p>
+            <p>{user?.email}</p>
+            <p>{user?.mobile}</p>
+            <p>{user?.dateOfBirth}</p>
           </DialogContentText>
         </DialogContent>
       </Dialog>

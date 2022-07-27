@@ -11,14 +11,15 @@ const DisplayUsers = () => {
   const navigate = useNavigate();
 
   const [users, setUsers] = useState([]);
-  const [open, setOpen] = useState(false);
+
+  const [id, setId] = useState("");
 
   useEffect(() => {
     (async () =>
       await axios //get all users
         .get(`http://localhost:8070/user/`)
         .then((res) => {
-          setUsers(res.data.users);
+          setUsers(res.data);
         })
         .catch((err) => alert(err.message)))();
   }, []);
@@ -69,13 +70,7 @@ const DisplayUsers = () => {
             {users &&
               users.map((user) => (
                 <Grid Item key={user.id} xs={12} md={6} lg={4}>
-                  <NoteCard
-                    user={user}
-                    modalOpen={open}
-                    setOpen={setOpen}
-                    setUsers={setUsers}
-                  />
-                  <Button onClick={() => setOpen(true)}>View More</Button>
+                  <NoteCard user={user} />
                 </Grid>
               ))}
           </Grid>
