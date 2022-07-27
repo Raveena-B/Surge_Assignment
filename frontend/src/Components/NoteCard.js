@@ -10,17 +10,15 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
 const NoteCard = ({
   note,
   handleDelete,
-  updateHandler,
+
   setDeleteNote,
   modalOpen = false,
   user,
-  id,
 }) => {
   const [open, setOpen] = useState(false);
   return (
@@ -36,7 +34,6 @@ const NoteCard = ({
                   setDeleteNote(true);
                 }}
               />
-              {/* <EditIcon onClick={() => (updateHandler = note.id)} /> */}
             </IconButton>
           }
           title={note?.title ? note?.title : user?.firstName}
@@ -66,11 +63,11 @@ const NoteCard = ({
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            <p> {user?.firstName}</p>
-            <p>{user?.lastName}</p>
-            <p>{user?.email}</p>
-            <p>{user?.mobile}</p>
-            <p>{user?.dateOfBirth}</p>
+            <p>First Name : {user?.firstName}</p>
+            <p>Last Nme : {user?.lastName}</p>
+            <p>Email : {user?.email}</p>
+            <p>Mobile : {user?.mobile}</p>
+            <p>Date Of Birth : {user?.dateOfBirth}</p>
           </DialogContentText>
         </DialogContent>
       </Dialog>

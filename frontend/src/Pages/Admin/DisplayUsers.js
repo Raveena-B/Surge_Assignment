@@ -12,8 +12,6 @@ const DisplayUsers = () => {
 
   const [users, setUsers] = useState([]);
 
-  const [id, setId] = useState("");
-
   useEffect(() => {
     (async () =>
       await axios //get all users
