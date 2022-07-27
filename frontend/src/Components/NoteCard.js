@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
@@ -58,7 +58,7 @@ const NoteCard = ({
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            <p>{user.firstName}First Name :</p>
+            <p> {user.firstName}First Name :</p>
             <p>{user.lastName}Last Name:</p>
             <p>{user.email} Email :</p>
             <p>{user.mobile} Mobile :</p>

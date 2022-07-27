@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Container, Typography, Grid } from "@mui/material";
+import { Box, Container, Typography, Grid, TextField } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
@@ -35,6 +35,21 @@ const DisplayNotes = () => {
       .catch((error) => {
         alert(error);
       });
+  };
+
+  const handleInputChange = (e) => {
+    const query = e.target.value;
+
+    setNotes((prevState) => {
+      const filteredData = prevState.data.filter((element) => {
+        return element.firstName.toLowerCase().includes(query.toLowerCase());
+      });
+
+      return {
+        query,
+        filteredData,
+      };
+    });
   };
 
   return (
@@ -78,6 +93,16 @@ const DisplayNotes = () => {
         >
           Display Notes
         </Typography>
+        <TextField
+          id="title"
+          label="Note Title"
+          placeholder="Search.."
+          color="secondary"
+          value={notes}
+          required
+          sx={{ m: 2, width: "100ch", mx: 20 }}
+        ></TextField>
+        <Button onClick={handleInputChange}>Search</Button>
         <Container>
           <Grid container spacing={3}>
             {notes &&

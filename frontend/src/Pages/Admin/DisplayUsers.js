@@ -15,7 +15,7 @@ const DisplayUsers = () => {
 
   useEffect(() => {
     (async () =>
-      axios //get all users
+      await axios //get all users
         .get(`http://localhost:8070/user/`)
         .then((res) => {
           setUsers(res.data.users);
@@ -70,7 +70,7 @@ const DisplayUsers = () => {
               users.map((user) => (
                 <Grid Item key={user.id} xs={12} md={6} lg={4}>
                   <NoteCard
-                    note={user}
+                    user={user}
                     modalOpen={open}
                     setOpen={setOpen}
                     setUsers={setUsers}
